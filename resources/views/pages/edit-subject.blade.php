@@ -43,7 +43,7 @@ Edit Mata Pelajaran
                                             <div class="form-group">
                                                 <label>Kelas</label>
                                                 <select name="class_students_id" class="form-control" id="">
-                                                    <option value="{{ $subject->class->name }}">
+                                                    <option value="{{ $subject->class_students_id }}">
                                                         {{ $subject->class->name }}</option>
                                                     @foreach ($class as $class )
                                                     <option value="{{ $class->id }}">{{ $class->name }}</option>

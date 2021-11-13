@@ -30,5 +30,22 @@ class SubjectController extends Controller
         return SubjectResource::collection($subject);
 
     }
+    public function getSubjectByTeacher(Request $request){
+
+        $idTeacher = $request->input('users_id');
+        $subject = Subject::where([
+            ['users_id',$idTeacher],
+        ])->get();
+
+        if($subject->isEmpty()){
+            return response()->json([
+                'status'=>FALSE,
+                'msg'=> 'Maaf tidak mata pelajaran yang anda ajar'
+            ],200);
+        }
+
+        return SubjectResource::collection($subject);
+
+    }
 
 }

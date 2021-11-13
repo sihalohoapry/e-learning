@@ -20,7 +20,7 @@ class ModuleController extends Controller
             'description'=>'nullable',
             'file_type'=>'nullable',
             'youtube_materi'=>'nullable|max:255',
-            'document_materi'=>'nullable|mimes:mp4,pdf|max:6200',
+            'document_materi'=>'nullable|string',
         ]);
 
         if($validator->fails()){
@@ -30,9 +30,9 @@ class ModuleController extends Controller
             ],200);
         }
 
-        if($request->hasFile('document_materi')){
-            $input['document_materi']= $request->file('document_materi')->store('assets/module/document','public');
-        }
+        // if($request->hasFile('document_materi')){
+        //     $input['document_materi']= $request->file('document_materi')->store('assets/module/document','public');
+        // }
 
         Module::create($input);
         return response()->json([

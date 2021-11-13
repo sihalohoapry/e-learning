@@ -16,7 +16,7 @@ class AssignmentController extends Controller
         $validator = Validator::make($input,[
            'users_id' =>'required|integer',
            'modules_id' =>'required|integer',
-           'assignment' =>'required|file|mimes:pdf,doc,csv,xlsx,xls,docx,ppt|max:6200',
+           'assignment' =>'required|string',
            'note' =>'sometimes|string',
         ]);
 
@@ -26,9 +26,9 @@ class AssignmentController extends Controller
                 'msg'=> $validator->errors(),
             ],400);
         }
-        if($request->hasFile('assignment')){
-            $input['assignment']= $request->file('assignment')->store('assets/module/assignment','public');
-        }
+        // if($request->hasFile('assignment')){
+        //     $input['assignment']= $request->file('assignment')->store('assets/module/assignment','public');
+        // }
 
         Assignment::create($input);
         return response()->json([

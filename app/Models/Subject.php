@@ -10,6 +10,7 @@ class Subject extends Model
     use HasFactory;
     protected $fillable =[
         'class_students_id',
+        'users_id',
         'name',
         'photo_subject',
     ];
@@ -19,8 +20,13 @@ class Subject extends Model
     public function class(){
         return $this->belongsTo(ClassStudent::class, 'class_students_id','id');
     }
-
+    
     public function module(){
         return $this->hasMany(Module::class,'modules_id','id');
     }
+
+    public function user(){
+        return $this->hasOne(User::class,'id','users_id');
+    }
+
 }

@@ -39,7 +39,9 @@ Route::delete('delete-module', [ModuleController::class,'deleteModule']);
 Route::get('get-all-exam', [ExamController::class,'getAllExam'] );
 
 Route::post('exam-by-class',[ExamController::class,'getExamByIdClass'] );
+Route::post('exam-by-teacher',[ExamController::class,'getExamByIdTeacher'] );
 Route::post('subject-by-class',[SubjectController::class,'getSubjectByClass'] );
+Route::post('subject-by-teacher',[SubjectController::class,'getSubjectByTeacher'] );
 
 Route::post('question-by-exam',[ExamQuestionsContoller::class,'getQuestionByExam'] );
 

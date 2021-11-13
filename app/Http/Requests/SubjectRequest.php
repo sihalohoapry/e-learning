@@ -25,6 +25,7 @@ class SubjectRequest extends FormRequest
     {
         return [
             'class_students_id' => 'nullable|integer',
+            'users_id' => 'nullable|integer',
             'name' => 'nullable|string|max:50',
             'photo_subject' => 'nullable|image|max:2048',
         ];

@@ -13,6 +13,21 @@ class ExamController extends Controller
         return ExamResource::collection(Exam::all());
     }
 
+    public function getExamByIdTeacher(Request $request){
+        $idTeacher = $request->input('users_id');
+        $exam = Exam::where([
+            ['users_id', $idTeacher],
+        ])->get();
+
+        if($exam->isEmpty()){
+            return response()->json([
+                'status' => FALSE,
+                'msg'=> 'Anda tidak mengampuh ujian'
+            ],200);
+        }
+        return ExamResource::collection($exam);
+
+    }
     public function getExamByIdClass(Request $request){
         $id = $request->input('class_students_id');
         $exam = Exam::where([

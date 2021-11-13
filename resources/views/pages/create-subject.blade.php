@@ -49,6 +49,17 @@ Buat Mata Pelajaran
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Guru</label>
+                                                <select name="users_id" class="form-control" id="">
+                                                    <option value="">PILIH Guru</option>
+                                                    @foreach ($teacher as $teacher )
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Foto</label>
                                                 <input type="file" name="photo_subject" class="form-control"
                                                     placeholder="Photo">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubjectRequest;
 use App\Models\ClassStudent;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,7 +19,7 @@ class SubjectController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Subject::with(['class']);
+            $query = Subject::with(['class','user']);
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
@@ -60,8 +61,10 @@ class SubjectController extends Controller
     public function create()
     {
         $class = ClassStudent::all();
+        $teacher = User::all()->where('roles','GURU');
         return view('pages.create-subject',[
-            'class' => $class
+            'class' => $class,
+            'teacher' => $teacher
         ]);
     }
 

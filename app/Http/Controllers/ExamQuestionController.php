@@ -36,6 +36,9 @@ class ExamQuestionController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
+                                <a class="dropdown-item" href="' . route('question.edit', $item->id) . '">
+                                        Sunting
+                                    </a>
                                     <form action="' . route('question.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
@@ -110,7 +113,15 @@ class ExamQuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = ExamQuestions::findOrFail($id);
+        $teacher = User::all()->where('roles','GURU');
+        $examAll = Exam::all();
+
+        return view('pages.edit-question',[
+            'question' => $question,
+            'examAll' => $examAll,
+            'teacher' => $teacher,
+        ]);
     }
 
     /**
@@ -120,9 +131,18 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExamQuestionRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $idExam = $request->exams_id;
+        $exam = Exam::findOrFail($idExam);
+        $class = ClassStudent::findOrFail($exam->class_students_id) ;
+        $teacher = User::findOrFail($exam->users_id);
+        $data['class_name'] = $class->name;
+        $data['teacher_name'] = $teacher->name;
+        $item = ExamQuestions::findOrFail($id);
+        $item->update($data);
+        return redirect()->route('question.index');
     }
 
     /**

@@ -27,6 +27,7 @@ Mata Pelajaran
                                             <th>ID</th>
                                             <th>Nama Mapel</th>
                                             <th>Kelas</th>
+                                            <th>Guru</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -67,6 +68,7 @@ Mata Pelajaran
                 {data:'id', name: 'id'},
                 {data:'name', name: 'name'},
                 {data:'class.name', name: 'class.name'},
+                {data:'user.name', name: 'user.name'},
                 {
                     data: 'action',
                     name: 'action',
